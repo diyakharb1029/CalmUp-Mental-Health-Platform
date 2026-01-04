@@ -1,0 +1,5 @@
+localhost {
+    reverse_proxy /chatbot localhost:8501
+}
+
+
