@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CalmUp- Quiz</title>
+
+    <link rel="stylesheet" href="./css/all.css" />
+    <link rel="stylesheet" href="./css/owl.carousel.min.css" />
+    <link rel="stylesheet" href="./css/owl.theme.default.min.css" />
+    <link rel="stylesheet" href="./css/aos.css" />
+    <link rel="stylesheet" href="./css/Style.css" />
+
+    <style>
+      .quiz-container {
+        margin: 10px auto;
+        background: #ffffff;
+        padding: 50px 30px;
+        border-radius: 16px;
+        box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+        width: 90%;
+        max-width: 1300px;
+        text-align: center;
+        animation: fadeIn 0.8s ease-in-out;
+      }
+
+      .quiz-container h1 {
+        color: #222;
+        margin-bottom: 10px;
+        font-size: 32px;
+        font-weight: 700;
+      }
+
+      .quiz-container p {
+        font-size: 18px;
+        color: #666;
+        margin-bottom: 40px;
+      }
+
+      .quiz-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 30px;
+      }
+
+      .quiz-card {
+        background: #f7fbff;
+        border-radius: 16px;
+        padding: 20px;
+        cursor: pointer;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        transition: all 0.4s ease;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .quiz-card img {
+        width: 120px;
+        height: 120px;
+        object-fit: cover;
+        border-radius: 50%;
+        margin-bottom: 15px;
+        transition: transform 0.4s ease;
+      }
+
+      .quiz-card h3 {
+        font-size: 18px;
+        color: #0077b6;
+        font-weight: 600;
+      }
+
+      .quiz-card:hover {
+        background: #d0ebff;
+        transform: translateY(-10px);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+      }
+
+      .quiz-card:hover img {
+        transform: scale(1.1);
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes slideUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="nav">
+      <div class="nav-menu flex-row">
+        <div class="nav-brand">
+          <a href="#" class="text-gray">CALMUP</a>
+        </div>
+        <div class="toggle-collapse">
+          <div class="toggle-icons">
+            <i class="fas fa-bars"></i>
+          </div>
+        </div>
+        <div>
+          <ul class="nav-items">
+            <li class="nav-link">
+              <a href="Index.html">Home</a>
+            </li>
+            <li class="nav-link">
+              <a href="chatbot.html">Talk</a>
+            </li>
+            <li class="nav-link">
+              <a href="quiz.html">Quiz</a>
+            </li>
+            <li class="nav-link">
+              <a href="reviews.html">Reviews</a>
+            </li>
+            <li class="nav-link">
+              <a href="register.html">Register Now</a>
+            </li>
+          </ul>
+        </div>
+        <div class="social text-gray">
+          <a href="https://www.facebook.com"
+            ><i class="fab fa-facebook-f"></i
+          ></a>
+          <a href="https://www.instagram.com"
+            ><i class="fab fa-instagram"></i
+          ></a>
+          <a href="https://x.com"><i class="fab fa-twitter"></i></a>
+          <a href="https://www.youtube.com"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="quiz-container">
+      <h1>Mental Health Quizzes</h1>
+      <p>Please respond truthfully to receive a personalized assessment.</p>
+
+      <div
+        style="
+          margin-top: 30px;
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+          gap: 20px;
+        "
+      >
+        <div class="quiz-card" onclick="location.href='stress.html'">
+          <img src="assets/quiz/stress.jpg" alt="Stress Quiz" />
+          <h3>Stress Level</h3>
+        </div>
+
+        <div class="quiz-card" onclick="location.href='anxiety.html'">
+          <img src="assets/quiz/anxiety.jpg" alt="Anxiety Quiz" />
+          <h3>Anxiety Symptoms</h3>
+        </div>
+
+        <div class="quiz-card" onclick="location.href='depression.html'">
+          <img src="assets/quiz/depression.jpg" alt="Depression Quiz" />
+          <h3>Depression Screening</h3>
+        </div>
+
+        <div class="quiz-card" onclick="location.href='burnout.html'">
+          <img src="assets/quiz/burnout.jpg" alt="Burnout Quiz" />
+          <h3>Burnout Assessment</h3>
+        </div>
+
+        <div class="quiz-card" onclick="location.href='emotional.html'">
+          <img src="assets/quiz/emotional.jpg" alt="Resilience Quiz" />
+          <h3>Emotional Resilience</h3>
+        </div>
+
+        <div class="quiz-card" onclick="location.href='mindfulness.html'">
+          <img src="assets/quiz/mindfulness.jpg" alt="Mindfulness Quiz" />
+          <h3>Mindfulness Awareness</h3>
+        </div>
+
+        <div class="quiz-card" onclick="location.href='esteem.html'">
+          <img src="assets/quiz/self.jpg" alt="Self-Esteem Quiz" />
+          <h3>Self-Esteem</h3>
+        </div>
+
+        <div class="quiz-card" onclick="location.href='sleep.html'">
+          <img src="assets/quiz/Sleep.jpg" alt="Sleep Quality Quiz" />
+          <h3>Sleep Quality</h3>
+        </div>
+
+        <div class="quiz-card" onclick="location.href='social.html'">
+          <img src="assets/quiz/social.jpeg" alt="Social Support Quiz" />
+          <h3>Social Support</h3>
+        </div>
+
+        <div class="quiz-card" onclick="location.href='coping.html'">
+          <img src="assets/quiz/coping.jpg" alt="Coping Skills Quiz" />
+          <h3>Coping Skills</h3>
+        </div>
+
+        <div class="quiz-card" onclick="location.href='adhd.html'">
+          <img src="assets/quiz/adhd.jpg.avif" alt="ADHD Screening Quiz" />
+          <h3>ADHD Screening</h3>
+        </div>
+
+        <div class="quiz-card" onclick="location.href='ptsd.html'">
+          <img src="assets/quiz/ptsd.jpg.webp" alt="PTSD Screening Quiz" />
+          <h3>PTSD Screening</h3>
+        </div>
+
+        <div class="quiz-card" onclick="location.href='relationship.html'">
+          <img
+            src="assets/quiz/relationship.jpeg"
+            alt="Relationship Satisfaction Quiz"
+          />
+          <h3>Relationship Satisfaction</h3>
+        </div>
+
+        <div class="quiz-card" onclick="location.href='work.html'">
+          <img src="assets/quiz/work.webp" alt="Work-Life Balance Quiz" />
+          <h3>Work-Life Balance</h3>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

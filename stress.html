@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CalmUp- Quiz</title>
+
+    <link rel="stylesheet" href="./css/all.css" />
+    <link rel="stylesheet" href="./css/owl.carousel.min.css" />
+    <link rel="stylesheet" href="./css/owl.theme.default.min.css" />
+    <link rel="stylesheet" href="./css/aos.css" />
+    <link rel="stylesheet" href="./css/Style.css" />
+
+    <style>
+      .quiz-container {
+        margin: auto;
+        background: white;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.15);
+        width: 50%;
+        max-width: 600px;
+        text-align: center;
+        animation: fadeIn 0.8s ease-in-out;
+      }
+
+      h1 {
+        text-align: center;
+        color: #444;
+      }
+
+      p {
+        text-align: center;
+        font-size: 16px;
+      }
+
+      .question {
+        margin: 20px 0;
+        padding: 15px;
+        border-radius: 8px;
+        background: rgba(116, 235, 213, 0.1);
+        text-align: left;
+        transition: all 0.3s ease-in-out;
+      }
+
+      .question:hover {
+        background: rgba(116, 235, 213, 0.2);
+        transform: scale(1.02);
+      }
+
+      label {
+        display: block;
+        padding: 8px 0;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      input[type="radio"] {
+        margin-right: 10px;
+      }
+
+      label:hover {
+        color: #0077b6;
+        font-weight: 500;
+      }
+
+      button[name="quizSubmitBtn"] {
+        display: block;
+        width: 100%;
+        padding: 12px;
+        border: none;
+        border-radius: 6px;
+        background: #0077b6;
+        color: white;
+        font-size: 18px;
+        cursor: pointer;
+        margin-top: 20px;
+        transition: all 0.3s;
+      }
+
+      button[name="quizSubmitBtn"]:hover {
+        background: #005f87;
+      }
+
+      .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        justify-content: center;
+        align-items: center;
+      }
+
+      .modal-content {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        width: 50%;
+        text-align: center;
+        position: relative;
+        box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.3);
+      }
+
+      .close-btn {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        cursor: pointer;
+        font-size: 20px;
+        font-weight: bold;
+      }
+
+      #report {
+        margin-top: 20px;
+        padding: 20px;
+        background: #f8f9fa;
+        border-radius: 10px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        animation: slideUp 0.5s ease-in-out;
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes slideUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="nav">
+      <div class="nav-menu flex-row">
+        <div class="nav-brand">
+          <a href="#" class="text-gray">CALMUP</a>
+        </div>
+        <div class="toggle-collapse">
+          <div class="toggle-icons">
+            <i class="fas fa-bars"></i>
+          </div>
+        </div>
+        <div>
+          <ul class="nav-items">
+            <li class="nav-link">
+              <a href="Index.html">Home</a>
+            </li>
+            <li class="nav-link">
+              <a href="chatbot.html">Talk</a>
+            </li>
+            <li class="nav-link">
+              <a href="quiz.html">Quiz</a>
+            </li>
+            <li class="nav-link">
+              <a href="reviews.html">Reviews</a>
+            </li>
+            <li class="nav-link">
+              <a href="register.html">Register Now</a>
+            </li>
+          </ul>
+        </div>
+        <div class="social text-gray">
+          <a href="https://www.facebook.com"
+            ><i class="fab fa-facebook-f"></i
+          ></a>
+          <a href="https://www.instagram.com"
+            ><i class="fab fa-instagram"></i
+          ></a>
+          <a href="https://x.com"><i class="fab fa-twitter"></i></a>
+          <a href="https://www.youtube.com"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="quiz-container">
+      <h1>Stress Level Quiz</h1>
+      <p>
+        Answer the following questions to evaluate your current stress levels.
+      </p>
+
+      <form id="quizForm">
+        <div class="question">
+          <p>1. How often do you feel overwhelmed by your daily tasks?</p>
+          <label
+            ><input type="radio" name="q1" value="3" /> Almost every day</label
+          >
+          <label
+            ><input type="radio" name="q1" value="2" /> A few times a
+            week</label
+          >
+          <label><input type="radio" name="q1" value="1" /> Rarely</label>
+          <label><input type="radio" name="q1" value="0" /> Never</label>
+        </div>
+
+        <div class="question">
+          <p>2. How do you usually feel when you wake up in the morning?</p>
+          <label
+            ><input type="radio" name="q2" value="3" /> Exhausted and
+            unmotivated</label
+          >
+          <label
+            ><input type="radio" name="q2" value="2" /> Neutral, just another
+            day</label
+          >
+          <label
+            ><input type="radio" name="q2" value="1" /> Energized and
+            ready</label
+          >
+          <label
+            ><input type="radio" name="q2" value="0" /> Excited for the
+            day</label
+          >
+        </div>
+
+        <div class="question">
+          <p>
+            3. How often do you feel lonely, even when you're around people?
+          </p>
+          <label><input type="radio" name="q3" value="3" /> Very often</label>
+          <label><input type="radio" name="q3" value="2" /> Sometimes</label>
+          <label><input type="radio" name="q3" value="1" /> Rarely</label>
+          <label><input type="radio" name="q3" value="0" /> Never</label>
+        </div>
+
+        <div class="question">
+          <p>4. Do you find it hard to focus on tasks for a long time?</p>
+          <label
+            ><input type="radio" name="q4" value="3" /> Yes, all the time</label
+          >
+          <label><input type="radio" name="q4" value="2" /> Sometimes</label>
+          <label><input type="radio" name="q4" value="1" /> Not really</label>
+          <label
+            ><input type="radio" name="q4" value="0" /> No, I stay
+            focused</label
+          >
+        </div>
+
+        <div class="question">
+          <p>5. When things go wrong, do you blame yourself?</p>
+          <label><input type="radio" name="q5" value="3" /> Always</label>
+          <label><input type="radio" name="q5" value="2" /> Sometimes</label>
+          <label><input type="radio" name="q5" value="1" /> Rarely</label>
+          <label><input type="radio" name="q5" value="0" /> Never</label>
+        </div>
+
+        <div class="question">
+          <p>6. How often do you feel anxious about the future?</p>
+          <label><input type="radio" name="q6" value="3" /> Constantly</label>
+          <label><input type="radio" name="q6" value="2" /> Often</label>
+          <label><input type="radio" name="q6" value="1" /> Sometimes</label>
+          <label><input type="radio" name="q6" value="0" /> Rarely</label>
+        </div>
+
+        <div class="question">
+          <p>7. Do social situations feel draining or energizing for you?</p>
+          <label
+            ><input type="radio" name="q7" value="3" /> Very draining</label
+          >
+          <label
+            ><input type="radio" name="q7" value="2" /> Slightly draining</label
+          >
+          <label><input type="radio" name="q7" value="1" /> Neutral</label>
+          <label><input type="radio" name="q7" value="0" /> Energizing</label>
+        </div>
+
+        <div class="question">
+          <p>8. How often do you set aside time for self-care or relaxation?</p>
+          <label><input type="radio" name="q8" value="3" /> Never</label>
+          <label><input type="radio" name="q8" value="2" /> Rarely</label>
+          <label><input type="radio" name="q8" value="1" /> Sometimes</label>
+          <label><input type="radio" name="q8" value="0" /> Regularly</label>
+        </div>
+
+        <div class="question">
+          <p>9. How do you handle sudden changes or unexpected problems?</p>
+          <label
+            ><input type="radio" name="q9" value="3" /> I panic easily</label
+          >
+          <label
+            ><input type="radio" name="q9" value="2" /> I struggle at
+            first</label
+          >
+          <label
+            ><input type="radio" name="q9" value="1" /> I stay calm most
+            times</label
+          >
+          <label
+            ><input type="radio" name="q9" value="0" /> I adapt easily</label
+          >
+        </div>
+
+        <div class="question">
+          <p>10. Are you generally optimistic about your future?</p>
+          <label><input type="radio" name="q10" value="3" /> Not at all</label>
+          <label><input type="radio" name="q10" value="2" /> Rarely</label>
+          <label><input type="radio" name="q10" value="1" /> Mostly</label>
+          <label
+            ><input type="radio" name="q10" value="0" /> Very much so</label
+          >
+        </div>
+
+        <div class="question">
+          <p>11. Do you often feel like you're just surviving, not thriving?</p>
+          <label
+            ><input type="radio" name="q11" value="3" /> Almost every day</label
+          >
+          <label><input type="radio" name="q11" value="2" /> Often</label>
+          <label
+            ><input type="radio" name="q11" value="1" /> Occasionally</label
+          >
+          <label><input type="radio" name="q11" value="0" /> Rarely</label>
+        </div>
+
+        <div class="question">
+          <p>12. How often do you compare yourself negatively to others?</p>
+          <label><input type="radio" name="q12" value="3" /> Very often</label>
+          <label><input type="radio" name="q12" value="2" /> Sometimes</label>
+          <label><input type="radio" name="q12" value="1" /> Rarely</label>
+          <label><input type="radio" name="q12" value="0" /> Never</label>
+        </div>
+
+        <div class="question">
+          <p>
+            13. Do you still enjoy the activities and hobbies you once loved?
+          </p>
+          <label
+            ><input type="radio" name="q13" value="3" /> No, not at all</label
+          >
+          <label
+            ><input type="radio" name="q13" value="2" /> Less than before</label
+          >
+          <label
+            ><input type="radio" name="q13" value="1" /> About the same</label
+          >
+          <label
+            ><input type="radio" name="q13" value="0" /> Even more now</label
+          >
+        </div>
+
+        <div class="question">
+          <p>
+            14. How often do you feel physically exhausted without obvious
+            reason?
+          </p>
+          <label
+            ><input type="radio" name="q14" value="3" /> Almost every day</label
+          >
+          <label><input type="radio" name="q14" value="2" /> Often</label>
+          <label><input type="radio" name="q14" value="1" /> Sometimes</label>
+          <label><input type="radio" name="q14" value="0" /> Rarely</label>
+        </div>
+
+        <div class="question">
+          <p>15. Do you have trouble falling or staying asleep at night?</p>
+          <label><input type="radio" name="q15" value="3" /> Very often</label>
+          <label><input type="radio" name="q15" value="2" /> Sometimes</label>
+          <label><input type="radio" name="q15" value="1" /> Rarely</label>
+          <label><input type="radio" name="q15" value="0" /> Never</label>
+        </div>
+
+        <div class="question">
+          <p>16. How often do you feel tense or on edge for no clear reason?</p>
+          <label><input type="radio" name="q16" value="3" /> Very often</label>
+          <label><input type="radio" name="q16" value="2" /> Sometimes</label>
+          <label><input type="radio" name="q16" value="1" /> Rarely</label>
+          <label><input type="radio" name="q16" value="0" /> Never</label>
+        </div>
+
+        <button type="button" name="quizSubmitBtn" onclick="generateReport()">
+          Submit
+        </button>
+      </form>
+    </div>
+
+    <div id="reportModal" class="modal">
+      <div class="modal-content">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+        <h2>Your Mental Health Report</h2>
+        <p id="reportText"></p>
+      </div>
+    </div>
+
+    <script>
+      function generateReport() {
+        let score = 0;
+        let totalQuestions = 16;
+
+        for (let i = 1; i <= totalQuestions; i++) {
+          let selected = document.querySelector(`input[name="q${i}"]:checked`);
+          if (selected) {
+            score += parseInt(selected.value);
+          }
+        }
+
+        let maxScore = totalQuestions * 3;
+        let reportText = "";
+
+        if (score >= maxScore * 0.75) {
+          reportText =
+            "You're experiencing high levels of stress and mental fatigue. It may help to reach out to a professional or practice self-care regularly.";
+        } else if (score >= maxScore * 0.5) {
+          reportText =
+            "You seem to have moderate stress levels. Consider engaging in mindfulness exercises or taking small breaks to improve your well-being.";
+        } else {
+          reportText =
+            "Your mental health seems to be in a good place! Keep up with healthy habits and a balanced lifestyle.";
+        }
+
+        document.getElementById("reportText").innerText = reportText;
+        document.getElementById("reportModal").style.display = "flex";
+      }
+
+      function closeModal() {
+        document.getElementById("reportModal").style.display = "none";
+        window.location.href = "quiz.html";
+      }
+    </script>
+  </body>
+</html>

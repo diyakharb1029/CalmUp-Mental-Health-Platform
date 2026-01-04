@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CalmUp - Reviews</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: #f8f9fa;
+        color: #495057;
+        line-height: 1.6;
+        transition: background 0.3s ease-in-out;
+      }
+
+      nav {
+        background: #2c3e50;
+        padding: 15px 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      nav .nav-items,
+      nav .social {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+      }
+
+      nav a {
+        color: #ecf0f1;
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.3s ease, transform 0.3s ease;
+      }
+
+      nav a:hover {
+        color: #2980b9;
+        transform: scale(1.1);
+      }
+
+      .container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        max-width: 1200px;
+        margin: 40px auto;
+        padding: 0 20px;
+        gap: 40px;
+        opacity: 0;
+        animation: fadeIn 1s forwards;
+      }
+
+      .left-panel,
+      .right-panel {
+        flex: 1 1 45%;
+        min-width: 300px;
+        transition: transform 0.5s ease;
+      }
+
+      h1,
+      h2 {
+        color: #2c3e50;
+        margin-bottom: 20px;
+        font-weight: 600;
+      }
+
+      p {
+        margin-bottom: 15px;
+        color: #6c757d;
+      }
+
+      textarea,
+      input {
+        width: 100%;
+        padding: 12px;
+        font-size: 15px;
+        border: 1px solid #ced4da;
+        border-radius: 6px;
+        margin-bottom: 15px;
+        transition: border 0.3s ease;
+      }
+
+      textarea:focus,
+      input:focus {
+        border-color: #2980b9;
+        outline: none;
+      }
+
+      button {
+        background-color: #2980b9;
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 6px;
+        font-size: 15px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+      }
+
+      button:hover {
+        background-color: #1abc9c;
+        transform: scale(1.05);
+      }
+
+      .card {
+        display: flex;
+        align-items: flex-start;
+        gap: 15px;
+        background: #fff;
+        border-radius: 10px;
+        padding: 15px 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        position: relative;
+        opacity: 0;
+        transform: translateY(20px);
+        animation: slideIn 0.5s forwards;
+        transition: box-shadow 0.3s ease, transform 0.3s ease;
+      }
+
+      .card:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        transform: translateY(-5px);
+      }
+
+      .card img {
+        width: 55px;
+        height: 55px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+
+      .card__content {
+        flex: 1;
+      }
+
+      .card__content i {
+        color: #2980b9;
+        font-size: 20px;
+        margin-right: 8px;
+      }
+
+      .card__content p {
+        margin-bottom: 6px;
+      }
+
+      .card__content h4 {
+        font-weight: 500;
+        color: #6c757d;
+        font-size: 15px;
+      }
+
+      #reviewStatus {
+        color: green;
+        margin-top: 10px;
+      }
+
+      .dropdown {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        display: none;
+        background-color: #fff;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 6px;
+        padding: 10px;
+        width: 120px;
+        z-index: 10;
+      }
+
+      .dropdown button {
+        background: none;
+        border: none;
+        padding: 8px;
+        width: 100%;
+        cursor: pointer;
+        text-align: left;
+        font-size: 14px;
+        color: #333;
+        transition: background-color 0.3s ease;
+      }
+
+      .dropdown button:hover {
+        background-color: #f0f0f0;
+      }
+
+      .dropdown-button {
+        background-color: #2980b9;
+        color: white;
+        padding: 8px 12px;
+        border-radius: 6px;
+        font-size: 13px;
+        cursor: pointer;
+      }
+
+      .dropdown-button:hover {
+        background-color: #16a085;
+      }
+
+      .card__content:hover .dropdown {
+        display: block;
+      }
+
+      @keyframes fadeIn {
+        0% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+
+      @keyframes slideIn {
+        0% {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .container {
+          flex-direction: column;
+          align-items: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div class="logo">
+        <a href="#"><strong>CALMUP</strong></a>
+      </div>
+      <div class="nav-items">
+        <a href="Index.html">Home</a>
+        <a href="chatbot.html">Talk</a>
+        <a href="quiz.html">Quiz</a>
+        <a href="reviews.html">Reviews</a>
+        <a href="register.html">Register Now</a>
+      </div>
+      <div class="social">
+        <a href="#"><i class="ri-facebook-fill"></i></a>
+        <a href="#"><i class="ri-instagram-fill"></i></a>
+        <a href="#"><i class="ri-twitter-fill"></i></a>
+        <a href="#"><i class="ri-youtube-fill"></i></a>
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="left-panel">
+        <h2>Write a Review</h2>
+        <form id="reviewForm">
+          <textarea
+            id="reviewText"
+            rows="4"
+            placeholder="Write your review here..."
+            required
+          ></textarea>
+          <input
+            type="text"
+            id="reviewerName"
+            placeholder="Your name (optional)"
+          />
+          <button type="submit">Submit Review</button>
+          <div id="reviewStatus"></div>
+        </form>
+
+        <h2 style="margin-top: 50px">About CalmUp</h2>
+        <p>
+          In today’s world, many hesitate to discuss their mental health with
+          professionals. That’s why we introduced an AI-powered chatbot and
+          dynamic quizzes designed to assess your mental well-being.
+        </p>
+        <p>
+          Soon, your conversations will be securely stored for a more
+          personalized experience with 24/7 support. This platform also offers
+          meditation techniques and effective strategies to help you stay calm.
+        </p>
+      </div>
+
+      <div class="right-panel" id="reviewCards"></div>
+    </div>
+
+    <script>
+      const reviewForm = document.getElementById("reviewForm");
+      const reviewText = document.getElementById("reviewText");
+      const reviewerName = document.getElementById("reviewerName");
+      const reviewStatus = document.getElementById("reviewStatus");
+      const reviewCards = document.getElementById("reviewCards");
+
+      const staticReviews = [
+        {
+          text: "This platform is a lifesaver! The chatbot supports me at my lowest, prevents suicidal thoughts and the updated quiz tracks my progress.",
+          name: "Vikram Singh",
+        },
+        {
+          text: "I love how this website tracks my mental health. The chatbot is comforting and the updated quiz shows my progress. Excited for more!",
+          name: "Aarav Kumar",
+        },
+        {
+          text: "This website eased my loneliness and anxiety. The chatbot listens, guides and feels like a supportive friend 24/7. Highly recommended!",
+          name: "Priya Sharma",
+        },
+      ];
+
+      function displayReview({ text, name }, isUserReview = false) {
+        const card = document.createElement("div");
+        card.className = "card";
+        card.innerHTML = `
+          <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="user" />
+          <div class="card__content">
+            <p><i class="ri-double-quotes-l"></i>${text}</p>
+            <h4>- ${name}</h4>
+          </div>
+          <div class="dropdown">
+            <button onclick="editReview(this)">Edit</button>
+            <button onclick="deleteReview(this)">Delete</button>
+          </div>
+        `;
+        if (isUserReview) {
+          card.querySelector(".dropdown").style.display = "block";
+        }
+        reviewCards.prepend(card);
+      }
+
+      function deleteReview(button) {
+        const card = button.closest(".card");
+        const reviewText = card.querySelector(".card__content p").textContent;
+        const userReviews =
+          JSON.parse(localStorage.getItem("userReviews")) || [];
+        const updatedReviews = userReviews.filter(
+          (review) => review.text !== reviewText
+        );
+        localStorage.setItem("userReviews", JSON.stringify(updatedReviews));
+        card.remove();
+      }
+
+      function editReview(button) {
+        const card = button.closest(".card");
+        const reviewTextVal = card
+          .querySelector(".card__content p")
+          .textContent.trim();
+        const reviewNameVal = card
+          .querySelector(".card__content h4")
+          .textContent.replace("- ", "")
+          .trim();
+        reviewText.value = reviewTextVal;
+        reviewerName.value = reviewNameVal;
+        deleteReview(button);
+      }
+
+      function showModal() {
+        document.getElementById("thankYouModal").style.display = "flex";
+      }
+
+      function closeModal() {
+        document.getElementById("thankYouModal").style.display = "none";
+      }
+
+      window.onload = function () {
+        const userReviews =
+          JSON.parse(localStorage.getItem("userReviews")) || [];
+        userReviews.reverse().forEach((review) => displayReview(review, true));
+        staticReviews.forEach((review) => displayReview(review));
+      };
+
+      reviewForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const text = reviewText.value.trim();
+        const name = reviewerName.value.trim() || "Anonymous";
+        if (!text) return;
+
+        const newReview = { text, name };
+
+        const stored = JSON.parse(localStorage.getItem("userReviews")) || [];
+        stored.push(newReview);
+        localStorage.setItem("userReviews", JSON.stringify(stored));
+
+        displayReview(newReview, true);
+        showModal();
+
+        reviewText.value = "";
+        reviewerName.value = "";
+      });
+    </script>
+
+    <div
+      id="thankYouModal"
+      style="
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.4);
+        z-index: 999;
+        justify-content: center;
+        align-items: center;
+      "
+    >
+      <div
+        style="
+          background: white;
+          padding: 30px 40px;
+          border-radius: 10px;
+          text-align: center;
+          max-width: 400px;
+          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        "
+      >
+        <h2 style="color: #007bff">Thank you for your review!</h2>
+        <p>Your feedback means a lot to us.</p>
+        <button
+          onclick="closeModal()"
+          style="
+            margin-top: 15px;
+            padding: 10px 20px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+          "
+        >
+          Close
+        </button>
+      </div>
+    </div>
+  </body>
+</html>

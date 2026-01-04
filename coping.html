@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CalmUp- Quiz</title>
+
+    <link rel="stylesheet" href="./css/all.css" />
+    <link rel="stylesheet" href="./css/owl.carousel.min.css" />
+    <link rel="stylesheet" href="./css/owl.theme.default.min.css" />
+    <link rel="stylesheet" href="./css/aos.css" />
+    <link rel="stylesheet" href="./css/Style.css" />
+
+    <style>
+      .quiz-container {
+        margin: auto;
+        background: white;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.15);
+        width: 50%;
+        max-width: 600px;
+        text-align: center;
+        animation: fadeIn 0.8s ease-in-out;
+      }
+
+      h1 {
+        text-align: center;
+        color: #444;
+      }
+
+      p {
+        text-align: center;
+        font-size: 16px;
+      }
+
+      .question {
+        margin: 20px 0;
+        padding: 15px;
+        border-radius: 8px;
+        background: rgba(116, 235, 213, 0.1);
+        text-align: left;
+        transition: all 0.3s ease-in-out;
+      }
+
+      .question:hover {
+        background: rgba(116, 235, 213, 0.2);
+        transform: scale(1.02);
+      }
+
+      label {
+        display: block;
+        padding: 8px 0;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      input[type="radio"] {
+        margin-right: 10px;
+      }
+
+      label:hover {
+        color: #0077b6;
+        font-weight: 500;
+      }
+
+      button[name="quizSubmitBtn"] {
+        display: block;
+        width: 100%;
+        padding: 12px;
+        border: none;
+        border-radius: 6px;
+        background: #0077b6;
+        color: white;
+        font-size: 18px;
+        cursor: pointer;
+        margin-top: 20px;
+        transition: all 0.3s;
+      }
+
+      button[name="quizSubmitBtn"]:hover {
+        background: #005f87;
+      }
+
+      .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        justify-content: center;
+        align-items: center;
+      }
+
+      .modal-content {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        width: 50%;
+        text-align: center;
+        position: relative;
+        box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.3);
+      }
+
+      .close-btn {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        cursor: pointer;
+        font-size: 20px;
+        font-weight: bold;
+      }
+
+      #report {
+        margin-top: 20px;
+        padding: 20px;
+        background: #f8f9fa;
+        border-radius: 10px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        animation: slideUp 0.5s ease-in-out;
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes slideUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="nav">
+      <div class="nav-menu flex-row">
+        <div class="nav-brand">
+          <a href="#" class="text-gray">CALMUP</a>
+        </div>
+        <div class="toggle-collapse">
+          <div class="toggle-icons">
+            <i class="fas fa-bars"></i>
+          </div>
+        </div>
+        <div>
+          <ul class="nav-items">
+            <li class="nav-link">
+              <a href="Index.html">Home</a>
+            </li>
+            <li class="nav-link">
+              <a href="chatbot.html">Talk</a>
+            </li>
+            <li class="nav-link">
+              <a href="quiz.html">Quiz</a>
+            </li>
+            <li class="nav-link">
+              <a href="reviews.html">Reviews</a>
+            </li>
+            <li class="nav-link">
+              <a href="register.html">Register Now</a>
+            </li>
+          </ul>
+        </div>
+        <div class="social text-gray">
+          <a href="https://www.facebook.com"
+            ><i class="fab fa-facebook-f"></i
+          ></a>
+          <a href="https://www.instagram.com"
+            ><i class="fab fa-instagram"></i
+          ></a>
+          <a href="https://x.com"><i class="fab fa-twitter"></i></a>
+          <a href="https://www.youtube.com"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="quiz-container">
+      <h1>Coping Skills Quiz</h1>
+      <p>
+        Answer the following questions to assess your coping strategies and
+        resilience during challenging situations.
+      </p>
+
+      <form id="copingQuizForm">
+        <div class="question">
+          <p>
+            1. When faced with stress, how often do you engage in activities
+            that help you relax (e.g., hobbies, exercise)?
+          </p>
+          <label><input type="radio" name="q1" value="0" /> Never</label>
+          <label><input type="radio" name="q1" value="1" /> Rarely</label>
+          <label><input type="radio" name="q1" value="2" /> Sometimes</label>
+          <label><input type="radio" name="q1" value="3" /> Often</label>
+        </div>
+
+        <div class="question">
+          <p>
+            2. How often do you talk to someone you trust when you're feeling
+            overwhelmed?
+          </p>
+          <label><input type="radio" name="q2" value="0" /> Never</label>
+          <label><input type="radio" name="q2" value="1" /> Rarely</label>
+          <label><input type="radio" name="q2" value="2" /> Sometimes</label>
+          <label><input type="radio" name="q2" value="3" /> Often</label>
+        </div>
+
+        <div class="question">
+          <p>
+            3. How often do you practice deep breathing or relaxation techniques
+            during stressful moments?
+          </p>
+          <label><input type="radio" name="q3" value="0" /> Never</label>
+          <label><input type="radio" name="q3" value="1" /> Rarely</label>
+          <label><input type="radio" name="q3" value="2" /> Sometimes</label>
+          <label><input type="radio" name="q3" value="3" /> Often</label>
+        </div>
+
+        <div class="question">
+          <p>
+            4. When problems arise, how often do you break them down into
+            smaller, manageable steps?
+          </p>
+          <label><input type="radio" name="q4" value="0" /> Never</label>
+          <label><input type="radio" name="q4" value="1" /> Rarely</label>
+          <label><input type="radio" name="q4" value="2" /> Sometimes</label>
+          <label><input type="radio" name="q4" value="3" /> Often</label>
+        </div>
+
+        <div class="question">
+          <p>
+            5. How often do you remind yourself of your strengths and past
+            successes during hard times?
+          </p>
+          <label><input type="radio" name="q5" value="0" /> Never</label>
+          <label><input type="radio" name="q5" value="1" /> Rarely</label>
+          <label><input type="radio" name="q5" value="2" /> Sometimes</label>
+          <label><input type="radio" name="q5" value="3" /> Often</label>
+        </div>
+
+        <div class="question">
+          <p>
+            6. Do you have healthy ways to express your emotions (e.g.,
+            journaling, art, talking)?
+          </p>
+          <label><input type="radio" name="q6" value="0" /> Never</label>
+          <label><input type="radio" name="q6" value="1" /> Rarely</label>
+          <label><input type="radio" name="q6" value="2" /> Sometimes</label>
+          <label><input type="radio" name="q6" value="3" /> Often</label>
+        </div>
+
+        <div class="question">
+          <p>
+            7. How often do you allow yourself to take a break when you need it?
+          </p>
+          <label><input type="radio" name="q7" value="0" /> Never</label>
+          <label><input type="radio" name="q7" value="1" /> Rarely</label>
+          <label><input type="radio" name="q7" value="2" /> Sometimes</label>
+          <label><input type="radio" name="q7" value="3" /> Often</label>
+        </div>
+
+        <div class="question">
+          <p>
+            8. How often do you seek professional help or resources when you're
+            struggling?
+          </p>
+          <label><input type="radio" name="q8" value="0" /> Never</label>
+          <label><input type="radio" name="q8" value="1" /> Rarely</label>
+          <label><input type="radio" name="q8" value="2" /> Sometimes</label>
+          <label><input type="radio" name="q8" value="3" /> Often</label>
+        </div>
+
+        <div class="question">
+          <p>
+            9. When you feel negative emotions, how often do you try to reframe
+            your thoughts positively?
+          </p>
+          <label><input type="radio" name="q9" value="0" /> Never</label>
+          <label><input type="radio" name="q9" value="1" /> Rarely</label>
+          <label><input type="radio" name="q9" value="2" /> Sometimes</label>
+          <label><input type="radio" name="q9" value="3" /> Often</label>
+        </div>
+
+        <div class="question">
+          <p>
+            10. How often do you engage in physical activities (like walking,
+            dancing, stretching) to cope with stress?
+          </p>
+          <label><input type="radio" name="q10" value="0" /> Never</label>
+          <label><input type="radio" name="q10" value="1" /> Rarely</label>
+          <label><input type="radio" name="q10" value="2" /> Sometimes</label>
+          <label><input type="radio" name="q10" value="3" /> Often</label>
+        </div>
+
+        <div class="question">
+          <p>
+            11. How often do you avoid unhealthy coping methods (e.g.,
+            overeating, withdrawing, negative self-talk)?
+          </p>
+          <label><input type="radio" name="q11" value="0" /> Never</label>
+          <label><input type="radio" name="q11" value="1" /> Rarely</label>
+          <label><input type="radio" name="q11" value="2" /> Sometimes</label>
+          <label><input type="radio" name="q11" value="3" /> Often</label>
+        </div>
+
+        <div class="question">
+          <p>
+            12. When overwhelmed, how often do you prioritize tasks to make them
+            more manageable?
+          </p>
+          <label><input type="radio" name="q12" value="0" /> Never</label>
+          <label><input type="radio" name="q12" value="1" /> Rarely</label>
+          <label><input type="radio" name="q12" value="2" /> Sometimes</label>
+          <label><input type="radio" name="q12" value="3" /> Often</label>
+        </div>
+
+        <div class="question">
+          <p>
+            13. How often do you maintain a daily routine to give structure to
+            your day?
+          </p>
+          <label><input type="radio" name="q13" value="0" /> Never</label>
+          <label><input type="radio" name="q13" value="1" /> Rarely</label>
+          <label><input type="radio" name="q13" value="2" /> Sometimes</label>
+          <label><input type="radio" name="q13" value="3" /> Often</label>
+        </div>
+
+        <div class="question">
+          <p>
+            14. How often do you set boundaries to protect your mental and
+            emotional energy?
+          </p>
+          <label><input type="radio" name="q14" value="0" /> Never</label>
+          <label><input type="radio" name="q14" value="1" /> Rarely</label>
+          <label><input type="radio" name="q14" value="2" /> Sometimes</label>
+          <label><input type="radio" name="q14" value="3" /> Often</label>
+        </div>
+
+        <div class="question">
+          <p>
+            15. When facing setbacks, how often do you remain optimistic about
+            overcoming them?
+          </p>
+          <label><input type="radio" name="q15" value="0" /> Never</label>
+          <label><input type="radio" name="q15" value="1" /> Rarely</label>
+          <label><input type="radio" name="q15" value="2" /> Sometimes</label>
+          <label><input type="radio" name="q15" value="3" /> Often</label>
+        </div>
+
+        <div class="question">
+          <p>
+            16. How often do you forgive yourself when things don't go as
+            planned?
+          </p>
+          <label><input type="radio" name="q16" value="0" /> Never</label>
+          <label><input type="radio" name="q16" value="1" /> Rarely</label>
+          <label><input type="radio" name="q16" value="2" /> Sometimes</label>
+          <label><input type="radio" name="q16" value="3" /> Often</label>
+        </div>
+
+        <button type="button" name="quizSubmitBtn" onclick="generateReport()">
+          Submit
+        </button>
+      </form>
+    </div>
+
+    <div id="reportModal" class="modal">
+      <div class="modal-content">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+        <h2>Your Mental Health Report</h2>
+        <p id="reportText"></p>
+      </div>
+    </div>
+
+    <script>
+      function generateReport() {
+        let score = 0;
+        let totalQuestions = document.querySelectorAll(".question").length;
+
+        for (let i = 1; i <= totalQuestions; i++) {
+          let selected = document.querySelector(`input[name="q${i}"]:checked`);
+          if (selected) {
+            score += parseInt(selected.value);
+          }
+        }
+
+        let reportText = "";
+
+        if (score >= totalQuestions * 0.75) {
+          reportText =
+            "You're actively engaging in positive coping mechanisms. It's great to see that you're taking care of your mental health! Keep using these strategies, and remember to seek professional support if you feel overwhelmed at any point.";
+        } else if (score >= totalQuestions * 0.5) {
+          reportText =
+            "You seem to have a mix of positive coping strategies and areas that could benefit from improvement. Consider incorporating more relaxation techniques or speaking with a support system to strengthen your resilience during tough times.";
+        } else {
+          reportText =
+            "It seems that you may be facing challenges in managing stress effectively. It's important to explore new coping strategies, such as mindfulness, journaling, or seeking professional guidance to improve your emotional well-being.";
+        }
+
+        document.getElementById("reportText").innerText = reportText;
+        document.getElementById("reportModal").style.display = "flex";
+      }
+
+      function closeModal() {
+        document.getElementById("reportModal").style.display = "none";
+        window.location.href = "quiz.html";
+      }
+    </script>
+  </body>
+</html>

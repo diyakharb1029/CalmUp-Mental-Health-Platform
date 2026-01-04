@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CalmUp - Register</title>
+    <link rel="stylesheet" href="css/registerstyles.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/all.css" />
+    <link rel="stylesheet" href="./css/owl.carousel.min.css" />
+    <link rel="stylesheet" href="./css/owl.theme.default.min.css" />
+    <link rel="stylesheet" href="./css/aos.css" />
+    <link rel="stylesheet" href="./css/Style.css" />
+  </head>
+  <body>
+    <nav class="nav">
+      <div class="nav-menu flex-row">
+        <div class="nav-brand">
+          <a href="#" class="text-gray">CALMUP</a>
+        </div>
+        <div class="toggle-collapse">
+          <div class="toggle-icons">
+            <i class="fas fa-bars"></i>
+          </div>
+        </div>
+        <div>
+          <ul class="nav-items">
+            <li class="nav-link"><a href="Index.html">Home</a></li>
+            <li class="nav-link"><a href="chatbot.html">Talk</a></li>
+            <li class="nav-link"><a href="quiz.html">Quiz</a></li>
+            <li class="nav-link"><a href="reviews.html">Reviews</a></li>
+            <li class="nav-link"><a href="register.html">Register Now</a></li>
+          </ul>
+        </div>
+        <div class="social text-gray">
+          <a href="https://www.facebook.com"
+            ><i class="fab fa-facebook-f"></i
+          ></a>
+          <a href="https://www.instagram.com"
+            ><i class="fab fa-instagram"></i
+          ></a>
+          <a href="https://x.com"><i class="fab fa-twitter"></i></a>
+          <a href="https://www.youtube.com"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="login">
+      <div class="login__content">
+        <div class="login__img">
+          <img src="assets/img-login.svg" alt="" />
+        </div>
+
+        <div class="login__forms">
+          <form class="login__registre block" id="login-in">
+            <h1 class="login__title">Welcome Back!</h1>
+            <div class="login__box">
+              <i class="bx bx-user login__icon"></i>
+              <input type="text" placeholder="Username" class="login__input" />
+            </div>
+            <div class="login__box">
+              <i class="bx bx-lock-alt login__icon"></i>
+              <input
+                type="password"
+                placeholder="Password"
+                class="login__input"
+              />
+              <i
+                class="bx bx-show login__toggle-password"
+                style="cursor: pointer; margin-left: 5px"
+              ></i>
+            </div>
+            <a href="#" class="login__forgot">Forgot password?</a>
+            <a href="#" class="login__button">Login</a>
+            <div>
+              <span class="login__account">Don't have an Account?</span>
+              <span class="login__signin" id="sign-up">Register Here Now</span>
+            </div>
+          </form>
+
+          <form class="login__create none" id="login-up">
+            <h1 class="login__title">Create Account</h1>
+            <div class="login__box">
+              <i class="bx bx-user login__icon"></i>
+              <input type="text" placeholder="Username" class="login__input" />
+            </div>
+            <div class="login__box">
+              <i class="bx bx-at login__icon"></i>
+              <input type="text" placeholder="Email" class="login__input" />
+            </div>
+            <div class="login__box">
+              <i class="bx bx-lock-alt login__icon"></i>
+              <input
+                type="password"
+                placeholder="Password"
+                class="login__input"
+              />
+              <i
+                class="bx bx-show login__toggle-password"
+                style="cursor: pointer; margin-left: 5px"
+              ></i>
+            </div>
+            <a href="#" class="login__button">Register Now</a>
+            <div>
+              <span class="login__account">Already have an Account?</span>
+              <span class="login__signup" id="sign-in">Sign In</span>
+            </div>
+            <div class="login__social">
+              <a href="#" class="login__social-icon"
+                ><i class="bx bxl-facebook"></i
+              ></a>
+              <a href="#" class="login__social-icon"
+                ><i class="bx bxl-twitter"></i
+              ></a>
+              <a href="#" class="login__social-icon"
+                ><i class="bx bxl-google"></i
+              ></a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const signUp = document.getElementById("sign-up"),
+        signIn = document.getElementById("sign-in"),
+        loginIn = document.getElementById("login-in"),
+        loginUp = document.getElementById("login-up");
+
+      const loginForm = document.getElementById("login-in");
+      const registerForm = document.getElementById("login-up");
+
+      signUp.addEventListener("click", () => {
+        loginIn.classList.remove("block");
+        loginIn.classList.add("none");
+        loginUp.classList.remove("none");
+        loginUp.classList.add("block");
+      });
+
+      signIn.addEventListener("click", () => {
+        loginUp.classList.remove("block");
+        loginUp.classList.add("none");
+        loginIn.classList.remove("none");
+        loginIn.classList.add("block");
+      });
+
+      function validateForm(form) {
+        const inputs = form.querySelectorAll(".login__input");
+        for (let input of inputs) {
+          if (input.value.trim() === "") {
+            alert("Please fill out all fields.");
+            input.focus();
+            return false;
+          }
+        }
+        return true;
+      }
+
+      function showLoadingAndRedirect(message, url) {
+        const loader = document.createElement("div");
+        loader.textContent = message;
+        loader.style.position = "fixed";
+        loader.style.top = "50%";
+        loader.style.left = "50%";
+        loader.style.transform = "translate(-50%, -50%)";
+        loader.style.background = "#fff";
+        loader.style.padding = "20px";
+        loader.style.borderRadius = "10px";
+        loader.style.boxShadow = "0 0 10px rgba(0,0,0,0.2)";
+        document.body.appendChild(loader);
+        setTimeout(() => (window.location.href = url), 1500);
+      }
+
+      loginForm
+        .querySelector(".login__button")
+        .addEventListener("click", (e) => {
+          e.preventDefault();
+          if (validateForm(loginForm)) {
+            showLoadingAndRedirect("Signing you in...", "quiz.html");
+          }
+        });
+
+      registerForm
+        .querySelector(".login__button")
+        .addEventListener("click", (e) => {
+          e.preventDefault();
+          if (validateForm(registerForm)) {
+            showLoadingAndRedirect("Registering your account...", "Index.html");
+          }
+        });
+
+      document.querySelectorAll(".login__toggle-password").forEach((icon) => {
+        icon.addEventListener("click", () => {
+          const input = icon.parentElement.querySelector("input");
+          input.type = input.type === "password" ? "text" : "password";
+          icon.classList.toggle("bx-show");
+          icon.classList.toggle("bx-hide");
+        });
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+          e.preventDefault();
+          if (loginIn.classList.contains("block") && validateForm(loginForm)) {
+            showLoadingAndRedirect("Signing you in...", "quiz.html");
+          } else if (
+            loginUp.classList.contains("block") &&
+            validateForm(registerForm)
+          ) {
+            showLoadingAndRedirect("Registering your account...", "Index.html");
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

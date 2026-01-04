@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CalmUp- Quiz</title>
+
+    <link rel="stylesheet" href="./css/all.css" />
+    <link rel="stylesheet" href="./css/owl.carousel.min.css" />
+    <link rel="stylesheet" href="./css/owl.theme.default.min.css" />
+    <link rel="stylesheet" href="./css/aos.css" />
+    <link rel="stylesheet" href="./css/Style.css" />
+
+    <style>
+      .quiz-container {
+        margin: auto;
+        background: white;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.15);
+        width: 50%;
+        max-width: 600px;
+        text-align: center;
+        animation: fadeIn 0.8s ease-in-out;
+      }
+
+      h1 {
+        text-align: center;
+        color: #444;
+      }
+
+      p {
+        text-align: center;
+        font-size: 16px;
+      }
+
+      .question {
+        margin: 20px 0;
+        padding: 15px;
+        border-radius: 8px;
+        background: rgba(116, 235, 213, 0.1);
+        text-align: left;
+        transition: all 0.3s ease-in-out;
+      }
+
+      .question:hover {
+        background: rgba(116, 235, 213, 0.2);
+        transform: scale(1.02);
+      }
+
+      label {
+        display: block;
+        padding: 8px 0;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      input[type="radio"] {
+        margin-right: 10px;
+      }
+
+      label:hover {
+        color: #0077b6;
+        font-weight: 500;
+      }
+
+      button[name="quizSubmitBtn"] {
+        display: block;
+        width: 100%;
+        padding: 12px;
+        border: none;
+        border-radius: 6px;
+        background: #0077b6;
+        color: white;
+        font-size: 18px;
+        cursor: pointer;
+        margin-top: 20px;
+        transition: all 0.3s;
+      }
+
+      button[name="quizSubmitBtn"]:hover {
+        background: #005f87;
+      }
+
+      .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        justify-content: center;
+        align-items: center;
+      }
+
+      .modal-content {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        width: 50%;
+        text-align: center;
+        position: relative;
+        box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.3);
+      }
+
+      .close-btn {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        cursor: pointer;
+        font-size: 20px;
+        font-weight: bold;
+      }
+
+      #report {
+        margin-top: 20px;
+        padding: 20px;
+        background: #f8f9fa;
+        border-radius: 10px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        animation: slideUp 0.5s ease-in-out;
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes slideUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="nav">
+      <div class="nav-menu flex-row">
+        <div class="nav-brand">
+          <a href="#" class="text-gray">CALMUP</a>
+        </div>
+        <div class="toggle-collapse">
+          <div class="toggle-icons">
+            <i class="fas fa-bars"></i>
+          </div>
+        </div>
+        <div>
+          <ul class="nav-items">
+            <li class="nav-link">
+              <a href="Index.html">Home</a>
+            </li>
+            <li class="nav-link">
+              <a href="chatbot.html">Talk</a>
+            </li>
+            <li class="nav-link">
+              <a href="quiz.html">Quiz</a>
+            </li>
+            <li class="nav-link">
+              <a href="reviews.html">Reviews</a>
+            </li>
+            <li class="nav-link">
+              <a href="register.html">Register Now</a>
+            </li>
+          </ul>
+        </div>
+        <div class="social text-gray">
+          <a href="https://www.facebook.com"
+            ><i class="fab fa-facebook-f"></i
+          ></a>
+          <a href="https://www.instagram.com"
+            ><i class="fab fa-instagram"></i
+          ></a>
+          <a href="https://x.com"><i class="fab fa-twitter"></i></a>
+          <a href="https://www.youtube.com"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="quiz-container">
+      <h1>PTSD Screening Quiz</h1>
+      <p>
+        Answer the following questions to screen for symptoms related to
+        Post-Traumatic Stress Disorder (PTSD).
+      </p>
+
+      <form id="ptsdQuizForm">
+        <div class="question">
+          <p>
+            1. Have you experienced repeated, disturbing memories, thoughts, or
+            images of a stressful experience from the past?
+          </p>
+          <label><input type="radio" name="q1" value="0" /> Never</label>
+          <label><input type="radio" name="q1" value="1" /> Rarely</label>
+          <label><input type="radio" name="q1" value="2" /> Sometimes</label>
+          <label><input type="radio" name="q1" value="3" /> Often</label>
+        </div>
+
+        <div class="question">
+          <p>
+            2. Have you had repeated, disturbing dreams of a stressful
+            experience from the past?
+          </p>
+          <label><input type="radio" name="q2" value="0" /> Never</label>
+          <label><input type="radio" name="q2" value="1" /> Rarely</label>
+          <label><input type="radio" name="q2" value="2" /> Sometimes</label>
+          <label><input type="radio" name="q2" value="3" /> Often</label>
+        </div>
+
+        <div class="question">
+          <p>
+            3. Have you suddenly acted or felt as if a stressful experience were
+            happening again (as if you were reliving it)?
+          </p>
+          <label><input type="radio" name="q3" value="0" /> Never</label>
+          <label><input type="radio" name="q3" value="1" /> Rarely</label>
+          <label><input type="radio" name="q3" value="2" /> Sometimes</label>
+          <label><input type="radio" name="q3" value="3" /> Often</label>
+        </div>
+
+        <div class="question">
+          <p>
+            4. Have you felt very upset when something reminded you of a
+            stressful experience from the past?
+          </p>
+          <label><input type="radio" name="q4" value="0" /> Never</label>
+          <label><input type="radio" name="q4" value="1" /> Rarely</label>
+          <label><input type="radio" name="q4" value="2" /> Sometimes</label>
+          <label><input type="radio" name="q4" value="3" /> Often</label>
+        </div>
+
+        <div class="question">
+          <p>
+            5. Have you had physical reactions (e.g., heart pounding, trouble
+            breathing, sweating) when reminded of a stressful experience?
+          </p>
+          <label><input type="radio" name="q5" value="0" /> Never</label>
+          <label><input type="radio" name="q5" value="1" /> Rarely</label>
+          <label><input type="radio" name="q5" value="2" /> Sometimes</label>
+          <label><input type="radio" name="q5" value="3" /> Often</label>
+        </div>
+
+        <div class="question">
+          <p>
+            6. Have you avoided thinking about or talking about a stressful
+            experience from the past?
+          </p>
+          <label><input type="radio" name="q6" value="0" /> Never</label>
+          <label><input type="radio" name="q6" value="1" /> Rarely</label>
+          <label><input type="radio" name="q6" value="2" /> Sometimes</label>
+          <label><input type="radio" name="q6" value="3" /> Often</label>
+        </div>
+
+        <div class="question">
+          <p>
+            7. Have you avoided activities or situations because they reminded
+            you of a stressful experience?
+          </p>
+          <label><input type="radio" name="q7" value="0" /> Never</label>
+          <label><input type="radio" name="q7" value="1" /> Rarely</label>
+          <label><input type="radio" name="q7" value="2" /> Sometimes</label>
+          <label><input type="radio" name="q7" value="3" /> Often</label>
+        </div>
+
+        <div class="question">
+          <p>8. Have you lost interest in activities that you used to enjoy?</p>
+          <label><input type="radio" name="q8" value="0" /> Never</label>
+          <label><input type="radio" name="q8" value="1" /> Rarely</label>
+          <label><input type="radio" name="q8" value="2" /> Sometimes</label>
+          <label><input type="radio" name="q8" value="3" /> Often</label>
+        </div>
+
+        <div class="question">
+          <p>9. Have you felt distant or cut off from other people?</p>
+          <label><input type="radio" name="q9" value="0" /> Never</label>
+          <label><input type="radio" name="q9" value="1" /> Rarely</label>
+          <label><input type="radio" name="q9" value="2" /> Sometimes</label>
+          <label><input type="radio" name="q9" value="3" /> Often</label>
+        </div>
+
+        <div class="question">
+          <p>
+            10. Have you felt emotionally numb or unable to experience loving
+            feelings for others?
+          </p>
+          <label><input type="radio" name="q10" value="0" /> Never</label>
+          <label><input type="radio" name="q10" value="1" /> Rarely</label>
+          <label><input type="radio" name="q10" value="2" /> Sometimes</label>
+          <label><input type="radio" name="q10" value="3" /> Often</label>
+        </div>
+
+        <div class="question">
+          <p>11. Have you felt as if your future will somehow be cut short?</p>
+          <label><input type="radio" name="q11" value="0" /> Never</label>
+          <label><input type="radio" name="q11" value="1" /> Rarely</label>
+          <label><input type="radio" name="q11" value="2" /> Sometimes</label>
+          <label><input type="radio" name="q11" value="3" /> Often</label>
+        </div>
+
+        <div class="question">
+          <p>12. Have you had trouble falling or staying asleep?</p>
+          <label><input type="radio" name="q12" value="0" /> Never</label>
+          <label><input type="radio" name="q12" value="1" /> Rarely</label>
+          <label><input type="radio" name="q12" value="2" /> Sometimes</label>
+          <label><input type="radio" name="q12" value="3" /> Often</label>
+        </div>
+
+        <div class="question">
+          <p>13. Have you felt irritable or had angry outbursts?</p>
+          <label><input type="radio" name="q13" value="0" /> Never</label>
+          <label><input type="radio" name="q13" value="1" /> Rarely</label>
+          <label><input type="radio" name="q13" value="2" /> Sometimes</label>
+          <label><input type="radio" name="q13" value="3" /> Often</label>
+        </div>
+
+        <div class="question">
+          <p>14. Have you had difficulty concentrating?</p>
+          <label><input type="radio" name="q14" value="0" /> Never</label>
+          <label><input type="radio" name="q14" value="1" /> Rarely</label>
+          <label><input type="radio" name="q14" value="2" /> Sometimes</label>
+          <label><input type="radio" name="q14" value="3" /> Often</label>
+        </div>
+
+        <div class="question">
+          <p>
+            15. Have you been "super alert" or watchful, even when there is no
+            apparent reason?
+          </p>
+          <label><input type="radio" name="q15" value="0" /> Never</label>
+          <label><input type="radio" name="q15" value="1" /> Rarely</label>
+          <label><input type="radio" name="q15" value="2" /> Sometimes</label>
+          <label><input type="radio" name="q15" value="3" /> Often</label>
+        </div>
+
+        <div class="question">
+          <p>
+            16. Have you been easily startled by unexpected noises or movements?
+          </p>
+          <label><input type="radio" name="q16" value="0" /> Never</label>
+          <label><input type="radio" name="q16" value="1" /> Rarely</label>
+          <label><input type="radio" name="q16" value="2" /> Sometimes</label>
+          <label><input type="radio" name="q16" value="3" /> Often</label>
+        </div>
+
+        <button
+          type="button"
+          name="quizSubmitBtn"
+          onclick="generatePTSDReport()"
+        >
+          Submit
+        </button>
+      </form>
+    </div>
+
+    <div id="reportModal" class="modal">
+      <div class="modal-content">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+        <h2>Your Mental Health Report</h2>
+        <p id="reportText"></p>
+      </div>
+    </div>
+
+    <script>
+      function generatePTSDReport() {
+        let score = 0;
+        let totalQuestions = document.querySelectorAll(".question").length;
+
+        for (let i = 1; i <= totalQuestions; i++) {
+          let selected = document.querySelector(`input[name="q${i}"]:checked`);
+          if (selected) {
+            score += parseInt(selected.value);
+          }
+        }
+
+        let reportText = "";
+
+        if (score >= totalQuestions * 0.75) {
+          reportText =
+            "Your responses suggest that you may be experiencing significant symptoms of PTSD. It is highly recommended that you seek professional mental health support to discuss these symptoms.";
+        } else if (score >= totalQuestions * 0.5) {
+          reportText =
+            "You may be experiencing moderate symptoms related to PTSD. Consider reaching out to a professional for further evaluation and to discuss coping strategies.";
+        } else {
+          reportText =
+            "Your responses indicate that you may not be experiencing severe PTSD symptoms. However, if you have concerns or if this quiz brought up difficult emotions, speaking to a mental health professional can still be helpful.";
+        }
+
+        document.getElementById("reportText").innerText = reportText;
+        document.getElementById("reportModal").style.display = "flex";
+      }
+
+      function closeModal() {
+        document.getElementById("reportModal").style.display = "none";
+        window.location.href = "quiz.html";
+      }
+    </script>
+  </body>
+</html>

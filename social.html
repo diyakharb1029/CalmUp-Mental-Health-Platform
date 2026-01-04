@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CalmUp- Quiz</title>
+
+    <link rel="stylesheet" href="./css/all.css" />
+    <link rel="stylesheet" href="./css/owl.carousel.min.css" />
+    <link rel="stylesheet" href="./css/owl.theme.default.min.css" />
+    <link rel="stylesheet" href="./css/aos.css" />
+    <link rel="stylesheet" href="./css/Style.css" />
+
+    <style>
+      .quiz-container {
+        margin: auto;
+        background: white;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.15);
+        width: 50%;
+        max-width: 600px;
+        text-align: center;
+        animation: fadeIn 0.8s ease-in-out;
+      }
+
+      h1 {
+        text-align: center;
+        color: #444;
+      }
+
+      p {
+        text-align: center;
+        font-size: 16px;
+      }
+
+      .question {
+        margin: 20px 0;
+        padding: 15px;
+        border-radius: 8px;
+        background: rgba(116, 235, 213, 0.1);
+        text-align: left;
+        transition: all 0.3s ease-in-out;
+      }
+
+      .question:hover {
+        background: rgba(116, 235, 213, 0.2);
+        transform: scale(1.02);
+      }
+
+      label {
+        display: block;
+        padding: 8px 0;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      input[type="radio"] {
+        margin-right: 10px;
+      }
+
+      label:hover {
+        color: #0077b6;
+        font-weight: 500;
+      }
+
+      button[name="quizSubmitBtn"] {
+        display: block;
+        width: 100%;
+        padding: 12px;
+        border: none;
+        border-radius: 6px;
+        background: #0077b6;
+        color: white;
+        font-size: 18px;
+        cursor: pointer;
+        margin-top: 20px;
+        transition: all 0.3s;
+      }
+
+      button[name="quizSubmitBtn"]:hover {
+        background: #005f87;
+      }
+
+      .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        justify-content: center;
+        align-items: center;
+      }
+
+      .modal-content {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        width: 50%;
+        text-align: center;
+        position: relative;
+        box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.3);
+      }
+
+      .close-btn {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        cursor: pointer;
+        font-size: 20px;
+        font-weight: bold;
+      }
+
+      #report {
+        margin-top: 20px;
+        padding: 20px;
+        background: #f8f9fa;
+        border-radius: 10px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        animation: slideUp 0.5s ease-in-out;
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes slideUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="nav">
+      <div class="nav-menu flex-row">
+        <div class="nav-brand">
+          <a href="#" class="text-gray">CALMUP</a>
+        </div>
+        <div class="toggle-collapse">
+          <div class="toggle-icons">
+            <i class="fas fa-bars"></i>
+          </div>
+        </div>
+        <div>
+          <ul class="nav-items">
+            <li class="nav-link">
+              <a href="Index.html">Home</a>
+            </li>
+            <li class="nav-link">
+              <a href="chatbot.html">Talk</a>
+            </li>
+            <li class="nav-link">
+              <a href="quiz.html">Quiz</a>
+            </li>
+            <li class="nav-link">
+              <a href="reviews.html">Reviews</a>
+            </li>
+            <li class="nav-link">
+              <a href="register.html">Register Now</a>
+            </li>
+          </ul>
+        </div>
+        <div class="social text-gray">
+          <a href="https://www.facebook.com"
+            ><i class="fab fa-facebook-f"></i
+          ></a>
+          <a href="https://www.instagram.com"
+            ><i class="fab fa-instagram"></i
+          ></a>
+          <a href="https://x.com"><i class="fab fa-twitter"></i></a>
+          <a href="https://www.youtube.com"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="quiz-container">
+      <h1>Social Support Awareness Quiz</h1>
+      <p>
+        Answer the following questions to evaluate the strength and quality of
+        your social relationships.
+      </p>
+
+      <form id="socialSupportQuizForm">
+        <div class="question">
+          <p>
+            1. How often do you feel you have someone to confide in when facing
+            challenges?
+          </p>
+          <label><input type="radio" name="q1" value="0" /> Never</label>
+          <label><input type="radio" name="q1" value="1" /> Rarely</label>
+          <label><input type="radio" name="q1" value="2" /> Sometimes</label>
+          <label><input type="radio" name="q1" value="3" /> Always</label>
+        </div>
+
+        <div class="question">
+          <p>
+            2. When you're feeling down, how often do you reach out to someone
+            for support?
+          </p>
+          <label><input type="radio" name="q2" value="0" /> Never</label>
+          <label><input type="radio" name="q2" value="1" /> Rarely</label>
+          <label><input type="radio" name="q2" value="2" /> Sometimes</label>
+          <label><input type="radio" name="q2" value="3" /> Often</label>
+        </div>
+
+        <div class="question">
+          <p>
+            3. How often do you feel truly understood by your friends or family?
+          </p>
+          <label><input type="radio" name="q3" value="0" /> Never</label>
+          <label><input type="radio" name="q3" value="1" /> Rarely</label>
+          <label><input type="radio" name="q3" value="2" /> Sometimes</label>
+          <label><input type="radio" name="q3" value="3" /> Frequently</label>
+        </div>
+
+        <div class="question">
+          <p>4. Do you have people you can rely on during emergencies?</p>
+          <label><input type="radio" name="q4" value="0" /> No, never</label>
+          <label><input type="radio" name="q4" value="1" /> Not really</label>
+          <label><input type="radio" name="q4" value="2" /> Sometimes</label>
+          <label><input type="radio" name="q4" value="3" /> Definitely</label>
+        </div>
+
+        <div class="question">
+          <p>
+            5. How often do you share your successes and good news with others?
+          </p>
+          <label><input type="radio" name="q5" value="0" /> Never</label>
+          <label><input type="radio" name="q5" value="1" /> Rarely</label>
+          <label><input type="radio" name="q5" value="2" /> Sometimes</label>
+          <label><input type="radio" name="q5" value="3" /> Often</label>
+        </div>
+
+        <div class="question">
+          <p>
+            6. How often do you offer support to your friends or family when
+            they are in need?
+          </p>
+          <label><input type="radio" name="q6" value="0" /> Never</label>
+          <label><input type="radio" name="q6" value="1" /> Rarely</label>
+          <label><input type="radio" name="q6" value="2" /> Sometimes</label>
+          <label><input type="radio" name="q6" value="3" /> Frequently</label>
+        </div>
+
+        <div class="question">
+          <p>7. Do you feel comfortable asking others for help when needed?</p>
+          <label><input type="radio" name="q7" value="0" /> Never</label>
+          <label><input type="radio" name="q7" value="1" /> Rarely</label>
+          <label><input type="radio" name="q7" value="2" /> Sometimes</label>
+          <label><input type="radio" name="q7" value="3" /> Always</label>
+        </div>
+
+        <div class="question">
+          <p>
+            8. How often do you participate in community or group activities?
+          </p>
+          <label><input type="radio" name="q8" value="0" /> Never</label>
+          <label><input type="radio" name="q8" value="1" /> Rarely</label>
+          <label><input type="radio" name="q8" value="2" /> Sometimes</label>
+          <label><input type="radio" name="q8" value="3" /> Regularly</label>
+        </div>
+
+        <div class="question">
+          <p>
+            9. How supported do you feel in your workplace or school
+            environment?
+          </p>
+          <label><input type="radio" name="q9" value="0" /> Not at all</label>
+          <label><input type="radio" name="q9" value="1" /> Slightly</label>
+          <label><input type="radio" name="q9" value="2" /> Somewhat</label>
+          <label
+            ><input type="radio" name="q9" value="3" /> Very supported</label
+          >
+        </div>
+
+        <div class="question">
+          <p>10. How often do you feel isolated or disconnected from others?</p>
+          <label><input type="radio" name="q10" value="0" /> Very often</label>
+          <label><input type="radio" name="q10" value="1" /> Sometimes</label>
+          <label><input type="radio" name="q10" value="2" /> Rarely</label>
+          <label><input type="radio" name="q10" value="3" /> Never</label>
+        </div>
+
+        <div class="question">
+          <p>
+            11. How often do you celebrate milestones or achievements with
+            others?
+          </p>
+          <label><input type="radio" name="q11" value="0" /> Never</label>
+          <label><input type="radio" name="q11" value="1" /> Rarely</label>
+          <label><input type="radio" name="q11" value="2" /> Sometimes</label>
+          <label><input type="radio" name="q11" value="3" /> Often</label>
+        </div>
+
+        <div class="question">
+          <p>
+            12. How comfortable are you being vulnerable with people you trust?
+          </p>
+          <label
+            ><input type="radio" name="q12" value="0" /> Not comfortable at
+            all</label
+          >
+          <label
+            ><input type="radio" name="q12" value="1" /> Slightly
+            comfortable</label
+          >
+          <label
+            ><input type="radio" name="q12" value="2" /> Somewhat
+            comfortable</label
+          >
+          <label
+            ><input type="radio" name="q12" value="3" /> Very comfortable</label
+          >
+        </div>
+
+        <div class="question">
+          <p>
+            13. How often do you receive encouragement and positive feedback
+            from others?
+          </p>
+          <label><input type="radio" name="q13" value="0" /> Never</label>
+          <label><input type="radio" name="q13" value="1" /> Rarely</label>
+          <label><input type="radio" name="q13" value="2" /> Sometimes</label>
+          <label><input type="radio" name="q13" value="3" /> Frequently</label>
+        </div>
+
+        <div class="question">
+          <p>
+            14. How often do you feel lonely even when you're around people?
+          </p>
+          <label><input type="radio" name="q14" value="0" /> Very often</label>
+          <label><input type="radio" name="q14" value="1" /> Sometimes</label>
+          <label><input type="radio" name="q14" value="2" /> Rarely</label>
+          <label><input type="radio" name="q14" value="3" /> Never</label>
+        </div>
+
+        <div class="question">
+          <p>
+            15. How confident are you in your ability to build and maintain
+            meaningful relationships?
+          </p>
+          <label
+            ><input type="radio" name="q15" value="0" /> Not confident</label
+          >
+          <label
+            ><input type="radio" name="q15" value="1" /> Slightly
+            confident</label
+          >
+          <label
+            ><input type="radio" name="q15" value="2" /> Moderately
+            confident</label
+          >
+          <label
+            ><input type="radio" name="q15" value="3" /> Very confident</label
+          >
+        </div>
+
+        <div class="question">
+          <p>
+            16. Overall, how satisfied are you with the social support you
+            receive?
+          </p>
+          <label
+            ><input type="radio" name="q16" value="0" /> Not satisfied</label
+          >
+          <label
+            ><input type="radio" name="q16" value="1" /> Slightly
+            satisfied</label
+          >
+          <label
+            ><input type="radio" name="q16" value="2" /> Moderately
+            satisfied</label
+          >
+          <label
+            ><input type="radio" name="q16" value="3" /> Very satisfied</label
+          >
+        </div>
+
+        <button type="button" name="quizSubmitBtn" onclick="generateReport()">
+          Submit
+        </button>
+      </form>
+    </div>
+
+    <div id="reportModal" class="modal">
+      <div class="modal-content">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+        <h2>Your Mental Health Report</h2>
+        <p id="reportText"></p>
+      </div>
+    </div>
+
+    <script>
+      function generateReport() {
+        let score = 0;
+        let totalQuestions = document.querySelectorAll(".question").length;
+
+        for (let i = 1; i <= totalQuestions; i++) {
+          let selected = document.querySelector(`input[name="q${i}"]:checked`);
+          if (selected) {
+            score += parseInt(selected.value);
+          }
+        }
+
+        let reportText = "";
+
+        if (score >= totalQuestions * 0.75) {
+          reportText =
+            "You're highly engaged with your social support network, showing strong interpersonal connections. Keep nurturing these relationships, and remember to reach out when needed.";
+        } else if (score >= totalQuestions * 0.5) {
+          reportText =
+            "You have moderate social support, but there may be areas to improve. Try to engage more with friends or family and focus on building deeper, more supportive connections.";
+        } else {
+          reportText =
+            "It seems that social support may be an area for growth in your life. Consider reaching out to others more often or looking into new social groups or activities that might help you feel more connected.";
+        }
+
+        document.getElementById("reportText").innerText = reportText;
+        document.getElementById("reportModal").style.display = "flex";
+      }
+
+      function closeModal() {
+        document.getElementById("reportModal").style.display = "none";
+        window.location.href = "quiz.html";
+      }
+    </script>
+  </body>
+</html>
